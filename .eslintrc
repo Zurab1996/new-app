@@ -1,0 +1,78 @@
+{
+    "extends": [
+        "airbnb",
+        "plugin:prettier/recommended",
+        "prettier/react",
+        "prettier/standard"
+    ],
+    "plugins": ["react", "prettier"],
+    "parser": "babel-eslint",
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    },
+    "rules": {
+        "prettier/prettier": "error",
+        "object-curly-newline": "off",
+        "quotes": ["error", "single"],
+        "import/extensions": [
+            "1",
+            {
+                "packages": "never"
+            }
+        ],
+        "linebreak-style": "off",
+        "no-nested-ternary": "off",
+        "no-case-declarations": "off",
+        "no-console": "off",
+        "no-unneeded-ternary": "off",
+        "no-plusplus": "off",
+        "class-methods-use-this": "off",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [".js", ".jsx"]
+            }
+        ],
+        "react/prefer-stateless-function": [
+            2,
+            {
+                "ignorePureComponents": true
+            }
+        ],
+        "react/require-default-props": "off",
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": false,
+                "classes": false,
+                "variables": false
+            }
+        ],
+        "no-unused-expressions": [
+            "error",
+            {
+                "allowTernary": true
+            }
+        ],
+        "semi": ["error", "never"],
+        "curly": ["error", "all"],
+        "jsx-a11y/anchor-is-valid": [ "off", {
+            "components": [ "Link" ],
+            "specialLink": [ "to" ]
+        }],
+        "consistent-return":"off",
+        "no-return-assign":"off",
+        "dot-notation":"off" ,
+        "import/no-extraneous-dependencies": "off",
+        "import/no-unresolved": "off"
+    }
+}
