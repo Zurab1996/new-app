@@ -9,6 +9,7 @@ import styled from 'styled-components'
 
 import { scale, verticalScale } from '@configs/size'
 import { ifIphoneX } from '@configs/iphoneXHelper'
+import AppStyles from '@configs/styles'
 
 // components
 import Icon from '@components/CustomIcon'
@@ -18,8 +19,6 @@ import TopNews from '@topNews'
 import News from '@news'
 import NewsFeed from '@newsFeed'
 import Profile from '@profile'
-
-import AppStyles from '@configs/styles'
 
 const tabBarOptions = {
     style: {
@@ -72,7 +71,7 @@ const TabNavigator = createBottomTabNavigator(
             screen: TopNewsNavigation,
             navigationOptions: {
                 tabBarIcon: ({ tintColor }) => (
-                    <Icon name="top-news" size={scale(20)} color={tintColor} />
+                    <Icon name="top-news" size={scale(25)} color={tintColor} />
                 ),
                 tabBarLabel: ({ tintColor }) => (
                     <TabBarLabel color={tintColor}>Top News</TabBarLabel>

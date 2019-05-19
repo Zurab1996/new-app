@@ -1,39 +1,37 @@
-import React from 'react'
-import { View } from 'react-native'
+import React, { Suspense } from 'react'
+import styled from 'styled-components'
 
-import LargeNews from '@components/LargeNews'
-import AppBackground from '@components/AppBackground'
-import { ifIphoneX } from '@configs/iphoneXHelper'
+const LargeNews = React.lazy(() => import('@components/LargeNews'))
+const AppBackground = React.lazy(() => import('@components/AppBackground'))
+const Header = React.lazy(() => import('@components/PageHeader/index'))
 
+// styled components
+const Container = styled.View``
+
+const HeaderText = styled.Text``
+
+// component
 const TopNews = () => {
     return (
-        <View>
-            <AppBackground />
-            <LargeNews />
-        </View>
+        <Suspense fallback={null}>
+            <Container>
+                <AppBackground />
+                <LargeNews />
+            </Container>
+        </Suspense>
     )
 }
 
+// check prop types
 TopNews.navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-        backgroundColor: '#f4511e',
-        ...ifIphoneX(
-            {
-                height: 40,
-            },
-            {
-                height: 45,
-            },
-            {
-                height: 65,
-            }
-        ),
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-        fontWeight: 'bold',
-    },
+    header: (
+        <Suspense fallback={null}>
+            <Header>
+                <HeaderText>emma</HeaderText>
+                <HeaderText>emma</HeaderText>
+            </Header>
+        </Suspense>
+    ),
 }
 
 export default TopNews

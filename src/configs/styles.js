@@ -5,6 +5,8 @@ const AppStyle = {
         COLOR_MEDIUM_PINK: 'rgba(255,66,242, 1)',
         COLOR_BLUE: 'rgba(46, 196, 196, 1)',
         COLOR_LIGHT_PINK: 'rgba(244, 238, 243, 1)',
+        COLOR_ORANGE: 'rgba(251,174,23,1)',
+        COLOR_WHITE: 'rgba(242, 242, 242, 1)',
     },
 }
 

@@ -3,6 +3,8 @@ package com.newsapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -28,6 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNSpinkitPackage(),
+            new FastImageViewPackage(),
             new LinearGradientPackage(),
             new RNDeviceInfo(),
             new RNScreensPackage(),
