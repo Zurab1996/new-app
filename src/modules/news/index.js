@@ -12,7 +12,7 @@ const Header = React.lazy(() => import('@components/PageHeader/index'))
 const Container = styled.View``
 
 const HeaderText = styled.Text`
-    font-family: Montserrat-SemiBold;
+    font-family: Raleway;
     font-size: 18px;
     color: ${AppStyle.color.COLOR_PINK};
 `

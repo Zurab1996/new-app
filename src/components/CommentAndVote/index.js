@@ -26,7 +26,7 @@ const IconContainer = styled.View`
 
 const Amount = styled.Text`
     font-size: ${verticalScale(10)}px;
-    font-family: Montserrat-ExtraLight;
+    font-family: Raleway-ExtraLight;
 `
 
 // components

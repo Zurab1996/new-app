@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform, PixelRatio } from 'react-native'
 
 import { isIphoneX } from '@configs/iphoneXHelper'
 
@@ -13,4 +13,17 @@ const verticalScale = size => (height / guidelineBaseHeight) * size
 const moderateScale = (size, factor = 0.5) =>
     size + (scale(size) - size) * factor
 
-export { scale, verticalScale, moderateScale }
+// font normalizer
+const { width: SCREEN_WIDTH } = Dimensions.get('window')
+
+// based on iphone 5s's scale
+const fontScale = SCREEN_WIDTH / 320
+
+const normalize = size => {
+    const newSize = size * fontScale
+    if (Platform.OS === 'ios') {
+        return Math.round(PixelRatio.roundToNearestPixel(newSize))
+    }
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+}
+export { scale, verticalScale, moderateScale, normalize }
