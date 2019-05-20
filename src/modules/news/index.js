@@ -1,6 +1,9 @@
 import React, { Suspense } from 'react'
 import styled from 'styled-components'
 
+import { Capitalize } from '@configs/helpers'
+import AppStyle from '@configs/styles'
+
 const LargeNews = React.lazy(() => import('@components/LargeNews'))
 const AppBackground = React.lazy(() => import('@components/AppBackground'))
 const Header = React.lazy(() => import('@components/PageHeader/index'))
@@ -8,7 +11,11 @@ const Header = React.lazy(() => import('@components/PageHeader/index'))
 // styled components
 const Container = styled.View``
 
-const HeaderText = styled.Text``
+const HeaderText = styled.Text`
+    font-family: Montserrat-SemiBold;
+    font-size: 18px;
+    color: ${AppStyle.color.COLOR_PINK};
+`
 
 // component
 const TopNews = () => {
@@ -27,8 +34,7 @@ TopNews.navigationOptions = {
     header: (
         <Suspense fallback={null}>
             <Header>
-                <HeaderText>emma</HeaderText>
-                <HeaderText>emma</HeaderText>
+                <HeaderText>{Capitalize('Header')}</HeaderText>
             </Header>
         </Suspense>
     ),

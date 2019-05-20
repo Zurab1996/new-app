@@ -4,12 +4,16 @@ import FastImage from 'react-native-fast-image'
 
 import { scale, verticalScale } from '@configs/size'
 import AppStyles from '@configs/styles'
+import { Capitalize } from '@configs/helpers'
 
 const OpenNews = React.lazy(() => import('@components/OpenNews/index'))
 const Image = React.lazy(() => import('@components/ImageLoader/index'))
+const CommentAndVote = React.lazy(() =>
+    import('@components/CommentAndVote/index')
+)
 
 // styled component
-const ContainerHeight = 515
+const ContainerHeight = 510
 const ContainerWidth = 343
 
 const ImageHeight = 320
@@ -29,16 +33,41 @@ const NewsContainer = styled.View`
 `
 
 const ImageContainer = styled.View`
-    width: ${scale(ContainerWidth)};
-    height: ${verticalScale(ImageHeight)};
+    width: 100%;
+    height: ${verticalScale(ImageHeight)}px;
     background-color: red;
 `
+
+const ContentContainer = styled.View`
+    flex-direction: column;
+    width: 100%;
+    height: ${verticalScale(ContainerHeight - ImageHeight)}px;
+    padding: 2%;
+`
+
+const HeaderContainer = styled.View`
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    border-bottom-width: ${scale(1)}px;
+    border-bottom-color: ${AppStyles.color.COLOR_GREY};
+`
+
+const HeaderTitle = styled.Text`
+    width: 75%;
+    height: 40%;
+    font-family: Montserrat-Medium;
+    font-size: ${verticalScale(15)}px;
+    color: ${AppStyles.color.COLOR_DARK_LIGHT};
+`
+
+const CommentVote = styled(CommentAndVote)``
 
 // component
 const LargeNews = () => {
     return (
-        <Container>
-            <Suspense fallback={null}>
+        <Suspense fallback={null}>
+            <Container>
                 <NewsContainer>
                     <ImageContainer>
                         <Image
@@ -58,10 +87,20 @@ const LargeNews = () => {
                             resizeMode={FastImage.resizeMode.cover}
                         />
                     </ImageContainer>
+                    <ContentContainer>
+                        <HeaderContainer>
+                            <HeaderTitle numberOfLines={3}>
+                                {Capitalize(
+                                    'US lifts steel and aluminium tariffs on Canada '
+                                )}
+                            </HeaderTitle>
+                            <CommentVote width={`${25}%`} height={`${50}%`} />
+                        </HeaderContainer>
+                    </ContentContainer>
                 </NewsContainer>
                 <OpenNews />
-            </Suspense>
-        </Container>
+            </Container>
+        </Suspense>
     )
 }
 

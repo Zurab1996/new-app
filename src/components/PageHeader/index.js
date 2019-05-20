@@ -3,14 +3,18 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { ifIphoneX } from '@configs/iphoneXHelper'
+import { verticalScale } from '@configs/size'
 import AppStyle from '@configs/styles'
 
 // styled components
 const Container = styled.View`
     background-color: ${AppStyle.color.COLOR_LIGHT_PINK};
+    border-bottom-width: ${verticalScale(2.5)}px;
+    border-bottom-color: ${AppStyle.color.COLOR_PINK};
 `
 const Wrapper = styled.View`
     flex-direction: row;
+    justify-content: center;
 `
 
 // components
