@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Animated, Platform, View } from 'react-native'
+import React from 'react'
+import { Animated, Platform } from 'react-native'
 import styled from 'styled-components'
 
 import { verticalScale } from '@configs/size'
@@ -13,14 +13,10 @@ const FlatList = styled.FlatList``
 const AnimatedFlatListComponent = Animated.createAnimatedComponent(FlatList)
 const NewsWrapper = React.lazy(() => import('@components/NewsWrapper'))
 
-// set styles for animations and flatList
-const height = 510
-
+const newsContainerHeight = 520
 // components
 const AnimatedFlatList = () => {
-    const [scrollViewAnimation, setScrollViewAnimation] = useState(
-        new Animated.Value(0)
-    )
+    const scrollViewAnimation = new Animated.Value(0)
 
     // animation for ios
     const scrollViewSwipeIos = index => {
@@ -30,23 +26,22 @@ const AnimatedFlatList = () => {
                     // translate item by set pixel(only next and prev items)
                     translateY: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * height,
-                            index * height,
-                            (index + 1) * height,
+                            (index - 1) * verticalScale(newsContainerHeight),
+                            index * verticalScale(newsContainerHeight),
+                            (index + 1) * verticalScale(newsContainerHeight),
                         ],
-                        outputRange: [0, 0, verticalScale(-40)],
-                        extrapolate: 'clamp',
+                        outputRange: [0, 0, verticalScale(-60)],
                     }),
                 },
                 {
                     // scale item by set pixel(only next and prev items)
-                    scaleY: scrollViewAnimation.interpolate({
+                    rotateY: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * height,
-                            index * height,
-                            (index + 1) * height,
+                            (index - 1) * verticalScale(newsContainerHeight),
+                            index * verticalScale(newsContainerHeight),
+                            (index + 1) * verticalScale(newsContainerHeight),
                         ],
-                        outputRange: [1, 1, 0.7],
+                        outputRange: ['0deg', '0deg', '70deg'],
                     }),
                 },
             ],
@@ -55,23 +50,25 @@ const AnimatedFlatList = () => {
 
     const SwipeViewAnimation = index => {
         if (Platform.OS === 'ios') {
-            scrollViewSwipeIos(index)
+            return scrollViewSwipeIos(index)
         }
     }
 
-    const renderNews = () => {
-        console.log('emma')
+    // eslint-disable-next-line react/prop-types
+    const renderNews = ({ item, index }) => {
         return (
-            <NewsWrapper>
-                <LargeNews />
-            </NewsWrapper>
+            <Animated.View style={[SwipeViewAnimation(Number(index))]}>
+                <NewsWrapper>
+                    <LargeNews />
+                </NewsWrapper>
+            </Animated.View>
         )
     }
 
     return (
         <AnimatedFlatListComponent
             renderItem={renderNews}
-            data={[2, 1, 3, 3]}
+            data={[2, 1, 3, 4, 5, 8, 9, 7, 0]}
             pagingEnabled
             vertical={Platform.OS === 'ios' ? true : false}
             horizontal={Platform.OS === 'ios' ? false : true}
@@ -83,18 +80,15 @@ const AnimatedFlatList = () => {
             bounces={false}
             removeClippedSubviews={Platform.OS === 'android' ? true : false}
             getItemLayout={(data, index) => ({
-                length: height,
-                offset: height * index,
+                length: newsContainerHeight,
+                offset: newsContainerHeight * index,
                 index,
             })}
             onScroll={Animated.event(
                 [
                     {
                         nativeEvent: {
-                            contentOffset:
-                                Platform.OS === 'android'
-                                    ? { x: SwipeViewAnimation }
-                                    : { y: SwipeViewAnimation },
+                            contentOffset: { y: scrollViewAnimation },
                         },
                     },
                 ],
