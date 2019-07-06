@@ -19,6 +19,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window')
 // based on iphone 5s's scale
 const fontScale = SCREEN_WIDTH / 320
 
+// normalizer of font
 const normalize = size => {
     const newSize = size * fontScale
     if (Platform.OS === 'ios') {
@@ -26,4 +27,16 @@ const normalize = size => {
     }
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
 }
-export { scale, verticalScale, moderateScale, normalize }
+
+// default height News Wrapper
+const newsWrapperHeight = 515
+const newsContainerHeight = 510
+
+export {
+    scale,
+    verticalScale,
+    moderateScale,
+    normalize,
+    newsWrapperHeight,
+    newsContainerHeight,
+}

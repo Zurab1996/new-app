@@ -2,14 +2,20 @@ import React, { Suspense } from 'react'
 import styled from 'styled-components'
 
 import { Capitalize } from '@configs/helpers'
+import { verticalScale } from '@configs/size'
+
 import AppStyle from '@configs/styles'
 
-const LargeNews = React.lazy(() => import('@components/LargeNews'))
+const AnimatedFlatList = React.lazy(() =>
+    import('@components/AnimatedFlatlist')
+)
 const AppBackground = React.lazy(() => import('@components/AppBackground'))
 const Header = React.lazy(() => import('@components/PageHeader/index'))
 
 // styled components
-const Container = styled.View``
+const Container = styled.View`
+    height: ${verticalScale(515)}px;
+`
 
 const HeaderText = styled.Text`
     font-family: Raleway;
@@ -23,7 +29,7 @@ const TopNews = () => {
         <Suspense fallback={null}>
             <Container>
                 <AppBackground />
-                <LargeNews />
+                <AnimatedFlatList />
             </Container>
         </Suspense>
     )

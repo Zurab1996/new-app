@@ -2,7 +2,12 @@ import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
 
-import { scale, verticalScale, normalize } from '@configs/size'
+import {
+    scale,
+    verticalScale,
+    normalize,
+    newsContainerHeight,
+} from '@configs/size'
 import AppStyles from '@configs/styles'
 import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
 
@@ -13,7 +18,7 @@ const CommentAndVote = React.lazy(() =>
 )
 
 // styled component
-const ContainerHeight = 510
+const ContainerHeight = newsContainerHeight
 const ContainerWidth = 343
 const ImageHeight = 320
 const ContentContainerHeight = ContainerHeight - ImageHeight
