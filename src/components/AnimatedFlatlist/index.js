@@ -48,10 +48,51 @@ const AnimatedFlatList = () => {
         }
     }
 
-    const SwipeViewAnimation = index => {
-        if (Platform.OS === 'ios') {
-            return scrollViewSwipeIos(index)
+    // item swipe animations on android
+    const scrollViewSwipeAndroid = index => {
+        return {
+            transform: [
+                {
+                    // translate item by set pixel(only next and prev items)
+                    translateX: scrollViewAnimation.interpolate({
+                        inputRange: [
+                            (index - 1) * verticalScale(newsContainerHeight),
+                            index * verticalScale(newsContainerHeight),
+                            (index + 1) * verticalScale(newsContainerHeight),
+                        ],
+                        outputRange: [0, 0, verticalScale(-40)],
+                        extrapolate: 'clamp',
+                    }),
+                },
+                {
+                    // scale item by set pixel(only next and prev items)
+                    rotateX: scrollViewAnimation.interpolate({
+                        inputRange: [
+                            (index - 1) * verticalScale(newsContainerHeight),
+                            index * verticalScale(newsContainerHeight),
+                            (index + 1) * verticalScale(newsContainerHeight),
+                        ],
+                        outputRange: ['0deg', '0deg', '70deg'],
+                    }),
+                },
+                {
+                    rotate: scrollViewAnimation.interpolate({
+                        inputRange: [
+                            (index - 1) * verticalScale(newsContainerHeight),
+                            index * verticalScale(newsContainerHeight),
+                            (index + 1) * verticalScale(newsContainerHeight),
+                        ],
+                        outputRange: ['-90deg', '-90deg', '-90deg'],
+                    }),
+                },
+            ],
         }
+    }
+
+    const SwipeViewAnimation = index => {
+        return Platform.OS === 'ios'
+            ? scrollViewSwipeIos(index)
+            : scrollViewSwipeAndroid(index)
     }
 
     // eslint-disable-next-line react/prop-types
@@ -88,7 +129,10 @@ const AnimatedFlatList = () => {
                 [
                     {
                         nativeEvent: {
-                            contentOffset: { y: scrollViewAnimation },
+                            contentOffset:
+                                Platform.OS === 'android'
+                                    ? { x: scrollViewAnimation }
+                                    : { y: scrollViewAnimation },
                         },
                     },
                 ],
