@@ -36,31 +36,25 @@ const Container = styled.View`
     border-bottom-right-radius: ${scale(10)}px;
     border-bottom-left-radius: ${scale(10)}px;
 `
-
 const NewsContainer = styled.View`
     height: ${verticalScale(ContainerHeight - 5)}px;
     width: ${scale(ContainerWidth)}px;
 `
-
 const ImageContainer = styled.View`
     width: 100%;
     height: ${verticalScale(ImageHeight)}px;
-    background-color: red;
 `
-
 const ContentContainer = styled.View`
     flex-direction: column;
     width: 100%;
     height: ${verticalScale(ContentContainerHeight)}px;
     padding: ${verticalScale(5)}px ${scale(10)}px;
 `
-
 const HeaderContainer = styled.View`
     flex-direction: row;
     width: 100%;
     height: ${verticalScale(HeaderContainerHeight)}px;
 `
-
 const HeaderTitle = styled.Text`
     width: 75%;
     height: ${verticalScale(HeaderContainerHeight)}px;
@@ -69,9 +63,7 @@ const HeaderTitle = styled.Text`
     line-height: ${verticalScale(22)};
     color: ${AppStyles.color.COLOR_DARK_LIGHT};
 `
-
 const CommentVote = styled(CommentAndVote)``
-
 const Delimiter = styled.View`
     width: 100%;
     margin: ${verticalScale(5)}px ${scale(2)}px;
@@ -79,19 +71,16 @@ const Delimiter = styled.View`
     border-bottom-width: ${scale(1)}px;
     border-bottom-color: ${AppStyles.color.COLOR_GREY};
 `
-
 const DescriptionContainer = styled.View`
     width: 100%;
     height: ${verticalScale(DescriptionContainerHeight)}px;
 `
-
 const Description = styled.Text`
     font-family: Raleway;
     font-size: ${normalize(11)}px;
     line-height: ${verticalScale(18)};
     color: ${AppStyles.color.COLOR_DARK_BLUE};
 `
-
 const SourceContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -99,7 +88,6 @@ const SourceContainer = styled.View`
     width: 100%;
     height: ${verticalScale(SourceContainerHeight)}px;
 `
-
 const SourceInfo = styled.Text`
     font-size: ${normalize(6)}px;
     font-family: Raleway;

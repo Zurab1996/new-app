@@ -2,10 +2,12 @@ import React from 'react'
 import { Animated, Platform } from 'react-native'
 import styled from 'styled-components'
 
-import { verticalScale } from '@configs/size'
+import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-import LargeNews from '@components/LargeNews'
+// import LargeNews from '@components/LargeNews'
+import BigNewsWrapper from '@components/BigNewsWrapper'
+// import BigNews from '@components/BigNews'
 
 // styled components
 const FlatList = styled.FlatList``
@@ -13,7 +15,6 @@ const FlatList = styled.FlatList``
 const AnimatedFlatListComponent = Animated.createAnimatedComponent(FlatList)
 const NewsWrapper = React.lazy(() => import('@components/NewsWrapper'))
 
-const newsContainerHeight = 520
 // components
 const AnimatedFlatList = () => {
     const scrollViewAnimation = new Animated.Value(0)
@@ -26,9 +27,11 @@ const AnimatedFlatList = () => {
                     // translate item by set pixel(only next and prev items)
                     translateY: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * verticalScale(newsContainerHeight),
-                            index * verticalScale(newsContainerHeight),
-                            (index + 1) * verticalScale(newsContainerHeight),
+                            (index - 1) *
+                                verticalScale(newsWrapperContainerHeight),
+                            index * verticalScale(newsWrapperContainerHeight),
+                            (index + 1) *
+                                verticalScale(newsWrapperContainerHeight),
                         ],
                         outputRange: [0, 0, verticalScale(-60)],
                     }),
@@ -37,9 +40,11 @@ const AnimatedFlatList = () => {
                     // scale item by set pixel(only next and prev items)
                     rotateY: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * verticalScale(newsContainerHeight),
-                            index * verticalScale(newsContainerHeight),
-                            (index + 1) * verticalScale(newsContainerHeight),
+                            (index - 1) *
+                                verticalScale(newsWrapperContainerHeight),
+                            index * verticalScale(newsWrapperContainerHeight),
+                            (index + 1) *
+                                verticalScale(newsWrapperContainerHeight),
                         ],
                         outputRange: ['0deg', '0deg', '70deg'],
                     }),
@@ -56,9 +61,11 @@ const AnimatedFlatList = () => {
                     // translate item by set pixel(only next and prev items)
                     translateX: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * verticalScale(newsContainerHeight),
-                            index * verticalScale(newsContainerHeight),
-                            (index + 1) * verticalScale(newsContainerHeight),
+                            (index - 1) *
+                                verticalScale(newsWrapperContainerHeight),
+                            index * verticalScale(newsWrapperContainerHeight),
+                            (index + 1) *
+                                verticalScale(newsWrapperContainerHeight),
                         ],
                         outputRange: [0, 0, verticalScale(-40)],
                         extrapolate: 'clamp',
@@ -68,9 +75,11 @@ const AnimatedFlatList = () => {
                     // scale item by set pixel(only next and prev items)
                     rotateX: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * verticalScale(newsContainerHeight),
-                            index * verticalScale(newsContainerHeight),
-                            (index + 1) * verticalScale(newsContainerHeight),
+                            (index - 1) *
+                                verticalScale(newsWrapperContainerHeight),
+                            index * verticalScale(newsWrapperContainerHeight),
+                            (index + 1) *
+                                verticalScale(newsWrapperContainerHeight),
                         ],
                         outputRange: ['0deg', '0deg', '70deg'],
                     }),
@@ -78,9 +87,11 @@ const AnimatedFlatList = () => {
                 {
                     rotate: scrollViewAnimation.interpolate({
                         inputRange: [
-                            (index - 1) * verticalScale(newsContainerHeight),
-                            index * verticalScale(newsContainerHeight),
-                            (index + 1) * verticalScale(newsContainerHeight),
+                            (index - 1) *
+                                verticalScale(newsWrapperContainerHeight),
+                            index * verticalScale(newsWrapperContainerHeight),
+                            (index + 1) *
+                                verticalScale(newsWrapperContainerHeight),
                         ],
                         outputRange: ['-90deg', '-90deg', '-90deg'],
                     }),
@@ -95,15 +106,21 @@ const AnimatedFlatList = () => {
             : scrollViewSwipeAndroid(index)
     }
 
-    // eslint-disable-next-line react/prop-types
+    // eslint-disable-next-line react/prop-types, no-unused-vars
     const renderNews = ({ item, index }) => {
         return (
             <Animated.View style={[SwipeViewAnimation(Number(index))]}>
                 <NewsWrapper>
-                    <LargeNews />
+                    <BigNewsWrapper />
                 </NewsWrapper>
             </Animated.View>
         )
+
+        /* <Animated.View style={[SwipeViewAnimation(Number(index))]}>
+                    <NewsWrapper>
+                        <LargeNews />
+                    </NewsWrapper>
+                </Animated.View> */
     }
 
     return (
@@ -121,8 +138,8 @@ const AnimatedFlatList = () => {
             bounces={false}
             removeClippedSubviews={Platform.OS === 'android' ? true : false}
             getItemLayout={(data, index) => ({
-                length: newsContainerHeight,
-                offset: newsContainerHeight * index,
+                length: newsWrapperContainerHeight,
+                offset: newsWrapperContainerHeight * index,
                 index,
             })}
             onScroll={Animated.event(

@@ -31,6 +31,7 @@ const normalize = size => {
 // default height News Wrapper
 const newsWrapperHeight = 515
 const newsContainerHeight = 510
+const newsWrapperContainerHeight = 520
 
 export {
     scale,
@@ -39,4 +40,5 @@ export {
     normalize,
     newsWrapperHeight,
     newsContainerHeight,
+    newsWrapperContainerHeight,
 }
