@@ -17,8 +17,8 @@ const Container = styled.View`
 const BigNewsWrapper = () => {
     return (
         <Container>
-            <BigNews secondChild={false} />
-            <BigNews secondChild />
+            <BigNews />
+            <BigNews bottom />
         </Container>
     )
 }

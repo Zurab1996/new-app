@@ -7,6 +7,7 @@ import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 // import components
 // import LargeNews from '@components/LargeNews'
 import BigNewsWrapper from '@components/BigNewsWrapper'
+import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
 // import BigNews from '@components/BigNews'
 
 // styled components
@@ -111,7 +112,7 @@ const AnimatedFlatList = () => {
         return (
             <Animated.View style={[SwipeViewAnimation(Number(index))]}>
                 <NewsWrapper>
-                    <BigNewsWrapper />
+                    <BigSmallNewsWrapper />
                 </NewsWrapper>
             </Animated.View>
         )

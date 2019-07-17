@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
-import PropTypes from 'prop-types'
 
 // styling configs
 import { scale, verticalScale, normalize } from '@configs/size'
@@ -16,7 +15,7 @@ const CommentAndVote = React.lazy(() =>
 )
 
 // sizes initialization
-const ContainerWidth = 343
+const ContainerWidth = 169
 const ContainerHeight = 250
 const ImageHeight = 140
 const ContentContainerHeight = ContainerHeight - ImageHeight
@@ -44,6 +43,7 @@ const ImageContainer = styled.View`
     width: 100%;
     height: ${verticalScale(ImageHeight)}px;
 `
+
 const ContentContainer = styled.View`
     flex-direction: column;
     width: 100%;
@@ -77,65 +77,51 @@ const SourceInfo = styled.Text`
     padding: 0px ${scale(10)}px;
     color: ${AppStyles.color.COLOR_DARK_BLUE};
 `
-// components
-const BigNews = ({ bottom }) => {
+const SmallNews = () => {
     return (
-        <Suspense fallback={null}>
-            <Container bottom={bottom}>
-                <NewsContainer>
-                    <ImageContainer>
-                        <Image
-                            imageStyle={{
-                                width: scale(ContainerWidth),
-                                height: verticalScale(ImageHeight),
-                            }}
-                            overlayStyle={{
-                                width: scale(ContainerWidth),
-                                height: verticalScale(ImageHeight),
-                            }}
-                            source={{
-                                uri:
-                                    'https://live.staticflickr.com/7712/16991019227_d83b18ea2c_b.jpg',
-                                priority: FastImage.priority.normal,
-                            }}
-                            resizeMode={FastImage.resizeMode.cover}
+        <Container>
+            <NewsContainer>
+                <ImageContainer>
+                    <Image
+                        imageStyle={{
+                            width: scale(ContainerWidth),
+                            height: verticalScale(ImageHeight),
+                        }}
+                        overlayStyle={{
+                            width: scale(ContainerWidth),
+                            height: verticalScale(ImageHeight),
+                        }}
+                        source={{
+                            uri:
+                                'https://live.staticflickr.com/7712/16991019227_d83b18ea2c_b.jpg',
+                            priority: FastImage.priority.normal,
+                        }}
+                        resizeMode={FastImage.resizeMode.cover}
+                    />
+                </ImageContainer>
+                <ContentContainer>
+                    <HeaderContainer>
+                        <HeaderTitle numberOfLines={3}>
+                            {Capitalize(
+                                'Japan economy beats expectations of slowdown '
+                            )}
+                        </HeaderTitle>
+                        <CommentVote
+                            width={`${25}%`}
+                            height={`${verticalScale(HeaderContainerHeight)}px`}
                         />
-                    </ImageContainer>
-                    <ContentContainer>
-                        <HeaderContainer>
-                            <HeaderTitle numberOfLines={3}>
-                                {Capitalize(
-                                    'Japan economy beats expectations of slowdown '
-                                )}
-                            </HeaderTitle>
-                            <CommentVote
-                                width={`${25}%`}
-                                height={`${verticalScale(
-                                    HeaderContainerHeight
-                                )}px`}
-                            />
-                        </HeaderContainer>
-                        <SourceContainer>
-                            <SourceInfo>
-                                {ShowAmountCharacters('BBC NEWS', 15)}
-                            </SourceInfo>
-                            <SourceInfo>5Min/ago</SourceInfo>
-                        </SourceContainer>
-                    </ContentContainer>
-                </NewsContainer>
-                <OpenNews />
-            </Container>
-        </Suspense>
+                    </HeaderContainer>
+                    <SourceContainer>
+                        <SourceInfo>
+                            {ShowAmountCharacters('BBC NEWS', 15)}
+                        </SourceInfo>
+                        <SourceInfo>5Min/ago</SourceInfo>
+                    </SourceContainer>
+                </ContentContainer>
+            </NewsContainer>
+            <OpenNews />
+        </Container>
     )
 }
 
-// default values
-BigNews.defaultProps = {
-    bottom: false,
-}
-// check prop types
-BigNews.propTypes = {
-    bottom: PropTypes.oneOfType([null, PropTypes.bool]),
-}
-
-export default BigNews
+export default SmallNews
