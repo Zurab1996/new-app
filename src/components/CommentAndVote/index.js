@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { scale, verticalScale } from '@configs/size'
 import AppStyle from '@configs/styles'
 
+// reusable components
 const Icon = React.lazy(() => import('@components/CustomIcon/index'))
 
 // styled components

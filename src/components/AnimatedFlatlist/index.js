@@ -5,9 +5,9 @@ import styled from 'styled-components'
 import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-// import LargeNews from '@components/LargeNews'
-import BigNewsWrapper from '@components/BigNewsWrapper'
-import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
+import LargeNews from '@components/LargeNews'
+// import BigNewsWrapper from '@components/BigNewsWrapper'
+// import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
 // import BigNews from '@components/BigNews'
 
 // styled components
@@ -47,7 +47,7 @@ const AnimatedFlatList = () => {
                             (index + 1) *
                                 verticalScale(newsWrapperContainerHeight),
                         ],
-                        outputRange: ['0deg', '0deg', '70deg'],
+                        outputRange: ['0deg', '0deg', '50deg'],
                     }),
                 },
             ],
@@ -112,16 +112,15 @@ const AnimatedFlatList = () => {
         return (
             <Animated.View style={[SwipeViewAnimation(Number(index))]}>
                 <NewsWrapper>
-                    <BigSmallNewsWrapper />
+                    <LargeNews />
                 </NewsWrapper>
             </Animated.View>
+            // <Animated.View style={[SwipeViewAnimation(Number(index))]}>
+            //     <NewsWrapper>
+            //         <BigSmallNewsWrapper />
+            //     </NewsWrapper>
+            // </Animated.View>
         )
-
-        /* <Animated.View style={[SwipeViewAnimation(Number(index))]}>
-                    <NewsWrapper>
-                        <LargeNews />
-                    </NewsWrapper>
-                </Animated.View> */
     }
 
     return (

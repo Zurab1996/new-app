@@ -2,7 +2,8 @@ import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
 import PropTypes from 'prop-types'
-
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { withNavigation } from 'react-navigation'
 // styling configs
 import { scale, verticalScale, normalize } from '@configs/size'
 import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
@@ -78,7 +79,7 @@ const SourceInfo = styled.Text`
     color: ${AppStyles.color.COLOR_DARK_BLUE};
 `
 // components
-const BigNews = ({ bottom }) => {
+const BigNews = ({ bottom, navigation }) => {
     return (
         <Suspense fallback={null}>
             <Container bottom={bottom}>
@@ -103,11 +104,17 @@ const BigNews = ({ bottom }) => {
                     </ImageContainer>
                     <ContentContainer>
                         <HeaderContainer>
-                            <HeaderTitle numberOfLines={3}>
-                                {Capitalize(
-                                    'Japan economy beats expectations of slowdown '
-                                )}
-                            </HeaderTitle>
+                            <TouchableOpacity
+                                onPress={() =>
+                                    navigation.navigate('IndividualNews')
+                                }
+                            >
+                                <HeaderTitle numberOfLines={3}>
+                                    {Capitalize(
+                                        'Japan economy beats expectations of slowdown '
+                                    )}
+                                </HeaderTitle>
+                            </TouchableOpacity>
                             <CommentVote
                                 width={`${25}%`}
                                 height={`${verticalScale(
@@ -138,4 +145,4 @@ BigNews.propTypes = {
     bottom: PropTypes.oneOfType([null, PropTypes.bool]),
 }
 
-export default BigNews
+export default withNavigation(BigNews)

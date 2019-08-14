@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
 
+// import sizing
 import {
     scale,
     verticalScale,
@@ -11,6 +12,7 @@ import {
 import AppStyles from '@configs/styles'
 import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
 
+// reusable news components
 const OpenNews = React.lazy(() => import('@components/OpenNews/index'))
 const Image = React.lazy(() => import('@components/ImageLoader/index'))
 const CommentAndVote = React.lazy(() =>

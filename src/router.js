@@ -19,6 +19,7 @@ import TopNews from '@topNews'
 import News from '@news'
 import NewsFeed from '@newsFeed'
 import Profile from '@profile'
+import IndividualNews from '@individualNews'
 
 const tabBarOptions = {
     style: {
@@ -59,11 +60,32 @@ const TabBarLabel = styled.Text`
 `
 const TopNewsNavigation = createStackNavigator({
     Home: TopNews,
+    IndividualNews,
 })
 
 const NewsNavigator = createStackNavigator({
     Home: News,
+    IndividualNews,
 })
+
+TopNewsNavigation.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true
+    if (navigation.state.index > 0) {
+        tabBarVisible = false
+    }
+    return {
+        tabBarVisible,
+    }
+}
+NewsNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true
+    if (navigation.state.index > 0) {
+        tabBarVisible = false
+    }
+    return {
+        tabBarVisible,
+    }
+}
 
 const TabNavigator = createBottomTabNavigator(
     {
@@ -109,6 +131,7 @@ const TabNavigator = createBottomTabNavigator(
                 tabBarLabel: ({ tintColor }) => (
                     <TabBarLabel color={tintColor}>Profile</TabBarLabel>
                 ),
+                tabBarVisible: false,
             },
         },
     },
