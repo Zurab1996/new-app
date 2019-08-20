@@ -1,13 +1,14 @@
 import React from 'react'
-import { Animated, Platform } from 'react-native'
+import { Animated, Platform, Text } from 'react-native'
 import styled from 'styled-components'
+import Modalize from 'react-native-modalize'
 
 import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-import LargeNews from '@components/LargeNews'
+// import LargeNews from '@components/LargeNews'
 // import BigNewsWrapper from '@components/BigNewsWrapper'
-// import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
+import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
 // import BigNews from '@components/BigNews'
 
 // styled components
@@ -110,54 +111,59 @@ const AnimatedFlatList = () => {
     // eslint-disable-next-line react/prop-types, no-unused-vars
     const renderNews = ({ item, index }) => {
         return (
-            <Animated.View style={[SwipeViewAnimation(Number(index))]}>
-                <NewsWrapper>
-                    <LargeNews />
-                </NewsWrapper>
-            </Animated.View>
             // <Animated.View style={[SwipeViewAnimation(Number(index))]}>
             //     <NewsWrapper>
-            //         <BigSmallNewsWrapper />
+            //         <LargeNews />
             //     </NewsWrapper>
             // </Animated.View>
+            <Animated.View style={[SwipeViewAnimation(Number(index))]}>
+                <NewsWrapper>
+                    <BigSmallNewsWrapper />
+                </NewsWrapper>
+            </Animated.View>
         )
     }
 
     return (
-        <AnimatedFlatListComponent
-            renderItem={renderNews}
-            data={[2, 1, 3, 4, 5, 8, 9, 7, 0]}
-            pagingEnabled
-            vertical={Platform.OS === 'ios' ? true : false}
-            horizontal={Platform.OS === 'ios' ? false : true}
-            initialPage={0}
-            scrollEventThrottle={1}
-            onEndReachedThreshold={0.01}
-            keyExtractor={(item, index) => index.toString()}
-            initialNumToRender={5}
-            bounces={false}
-            removeClippedSubviews={Platform.OS === 'android' ? true : false}
-            getItemLayout={(data, index) => ({
-                length: newsWrapperContainerHeight,
-                offset: newsWrapperContainerHeight * index,
-                index,
-            })}
-            onScroll={Animated.event(
-                [
-                    {
-                        nativeEvent: {
-                            contentOffset:
-                                Platform.OS === 'android'
-                                    ? { x: scrollViewAnimation }
-                                    : { y: scrollViewAnimation },
+        <>
+            <AnimatedFlatListComponent
+                renderItem={renderNews}
+                data={[2, 1, 3, 4, 5, 8, 9, 7, 0]}
+                pagingEnabled
+                vertical={Platform.OS === 'ios' ? true : false}
+                horizontal={Platform.OS === 'ios' ? false : true}
+                initialPage={0}
+                scrollEventThrottle={1}
+                onEndReachedThreshold={0.01}
+                keyExtractor={(item, index) => index.toString()}
+                initialNumToRender={5}
+                bounces={false}
+                removeClippedSubviews={Platform.OS === 'android' ? true : false}
+                getItemLayout={(data, index) => ({
+                    length: newsWrapperContainerHeight,
+                    offset: newsWrapperContainerHeight * index,
+                    index,
+                })}
+                onScroll={Animated.event(
+                    [
+                        {
+                            nativeEvent: {
+                                contentOffset:
+                                    Platform.OS === 'android'
+                                        ? { x: scrollViewAnimation }
+                                        : { y: scrollViewAnimation },
+                            },
                         },
-                    },
-                ],
-                {
-                    useNativeDriver: true,
-                }
-            )}
-        />
+                    ],
+                    {
+                        useNativeDriver: true,
+                    }
+                )}
+            />
+            {/* <Modalize alwaysOpen={100}>
+                <Text>content</Text>
+            </Modalize> */}
+        </>
     )
 }
 

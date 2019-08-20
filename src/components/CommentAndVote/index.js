@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useRef, Fragment } from 'react'
+import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import Modalize from 'react-native-modalize'
 
 import { scale, verticalScale } from '@configs/size'
 import AppStyle from '@configs/styles'
 
 // reusable components
 const Icon = React.lazy(() => import('@components/CustomIcon/index'))
-
+const Comment = React.lazy(() =>
+    import('@components/CommentAndVote/Comment/index')
+)
 // styled components
 const Container = styled.View`
     width: ${({ width }) => width};
@@ -31,18 +35,49 @@ const Amount = styled.Text`
 `
 
 // components
-const CommentAndVote = ({ width, height }) => {
+// eslint-disable-next-line react/prop-types
+const CommentAndVote = ({ width, height, onOpenCommentModal }) => {
+    const modalRef = useRef(null)
+    const onPressComment = () => {
+        onOpenCommentModal(() => {
+            const modal = modalRef.current
+            if (modal) {
+                modal.open()
+            }
+        })
+        // if (typeof onOpenCommentModal === 'function') {
+        //     const modal = modalRef.current
+        //     if (modal) {
+        //         modal.open()
+        //         onOpenCommentModal()
+        //     }
+        // }
+    }
+
     return (
-        <Container width={width} height={height}>
-            <IconContainer>
-                <CustomIcon name="vote" size={scale(22)} />
-                <Amount>23</Amount>
-            </IconContainer>
-            <IconContainer>
-                <CustomIcon name="comment" size={scale(22)} />
-                <Amount>23</Amount>
-            </IconContainer>
-        </Container>
+        <Fragment>
+            <Container width={width} height={height}>
+                <IconContainer>
+                    <CustomIcon name="vote" size={scale(22)} />
+                    <Amount>23</Amount>
+                </IconContainer>
+                <IconContainer>
+                    <TouchableOpacity onPress={onPressComment}>
+                        <CustomIcon name="comment" size={scale(22)} />
+                        <Amount>23</Amount>
+                    </TouchableOpacity>
+                </IconContainer>
+            </Container>
+            <Modalize
+                withReactModal
+                ref={modalRef}
+                modalStyle={{
+                    backgroundColor: AppStyle.color.COLOR_LIGHT_PINK,
+                }}
+            >
+                <Comment />
+            </Modalize>
+        </Fragment>
     )
 }
 

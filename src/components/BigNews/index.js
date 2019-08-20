@@ -2,8 +2,9 @@ import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
 import PropTypes from 'prop-types'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableOpacity } from 'react-native'
 import { withNavigation } from 'react-navigation'
+
 // styling configs
 import { scale, verticalScale, normalize } from '@configs/size'
 import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
@@ -56,9 +57,11 @@ const HeaderContainer = styled.View`
     width: 100%;
     height: ${verticalScale(HeaderContainerHeight)}px;
 `
-const HeaderTitle = styled.Text`
+const HeaderTitle = styled(TouchableOpacity)`
     width: 75%;
     height: ${verticalScale(HeaderContainerHeight)}px;
+`
+const HeaderTitleText = styled.Text`
     font-family: Raleway-SemiBold;
     font-size: ${normalize(15)}px;
     line-height: ${verticalScale(22)};
@@ -79,7 +82,12 @@ const SourceInfo = styled.Text`
     color: ${AppStyles.color.COLOR_DARK_BLUE};
 `
 // components
+// eslint-disable-next-line react/prop-types
 const BigNews = ({ bottom, navigation }) => {
+    const onOpenCommentModal = openModal => {
+        openModal()
+    }
+
     return (
         <Suspense fallback={null}>
             <Container bottom={bottom}>
@@ -104,22 +112,23 @@ const BigNews = ({ bottom, navigation }) => {
                     </ImageContainer>
                     <ContentContainer>
                         <HeaderContainer>
-                            <TouchableOpacity
+                            <HeaderTitle
                                 onPress={() =>
                                     navigation.navigate('IndividualNews')
                                 }
                             >
-                                <HeaderTitle numberOfLines={3}>
+                                <HeaderTitleText numberOfLines={3}>
                                     {Capitalize(
                                         'Japan economy beats expectations of slowdown '
                                     )}
-                                </HeaderTitle>
-                            </TouchableOpacity>
+                                </HeaderTitleText>
+                            </HeaderTitle>
                             <CommentVote
                                 width={`${25}%`}
                                 height={`${verticalScale(
                                     HeaderContainerHeight
                                 )}px`}
+                                onOpenCommentModal={onOpenCommentModal}
                             />
                         </HeaderContainer>
                         <SourceContainer>
