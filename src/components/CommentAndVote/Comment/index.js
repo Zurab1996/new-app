@@ -17,7 +17,38 @@ const Container = styled.View`
 const Comment = () => {
     return (
         <Container>
-            <CommentWrapper />
+            <CommentWrapper
+                text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                publishedAt="13 minutes age"
+                replyCount="REPLY 0"
+                isReply={false}
+            >
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply
+                />
+            </CommentWrapper>
+            <CommentWrapper
+                text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                publishedAt="13 minutes age"
+                replyCount="REPLY 0"
+                isReply={false}
+            >
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply
+                />
+            </CommentWrapper>
         </Container>
     )
 }
