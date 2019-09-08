@@ -1,21 +1,23 @@
 import React from 'react'
-import { Animated, Platform, Text } from 'react-native'
+import { Animated, Platform } from 'react-native'
 import styled from 'styled-components'
-import Modalize from 'react-native-modalize'
 
 import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-// import LargeNews from '@components/LargeNews'
-// import BigNewsWrapper from '@components/BigNewsWrapper'
-import BigSmallNewsWrapper from '@components/BigSmallNewsWrapper'
-// import BigNews from '@components/BigNews'
+// const LargeNews = React.lazy(() => import('@components/News/Large'))
+// const BigNewsWrapper = React.lazy(() =>
+//     import('@components/News/Wrappers/BigNews')
+// )
+const BigSmallNewsWrapper = React.lazy(() =>
+    import('@components/News/Wrappers/BigSmallNews')
+)
+const NewsWrapper = React.lazy(() => import('@components/News/Wrappers/News'))
 
 // styled components
 const FlatList = styled.FlatList``
 
 const AnimatedFlatListComponent = Animated.createAnimatedComponent(FlatList)
-const NewsWrapper = React.lazy(() => import('@components/NewsWrapper'))
 
 // components
 const AnimatedFlatList = () => {

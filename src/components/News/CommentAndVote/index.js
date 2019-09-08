@@ -9,9 +9,9 @@ import { verticalScale, scale, normalize } from '@configs/size'
 import AppStyle from '@configs/styles'
 
 // reusable components
-const Icon = React.lazy(() => import('@components/CustomIcon/index'))
+const Icon = React.lazy(() => import('@components/CustomIcon'))
 const Comment = React.lazy(() =>
-    import('@components/CommentAndVote/Comment/index')
+    import('@components/News/CommentAndVote/Comment')
 )
 
 // init sizing
@@ -93,6 +93,7 @@ const CommentAndVote = ({ width, height, onOpenCommentModal }) => {
         0
     )
     const modalRef = useRef(null)
+    const commentInputRef = useRef(null)
 
     useEffect(() => {
         const keyboardShowEventListener = Keyboard.addListener(
@@ -167,6 +168,7 @@ const CommentAndVote = ({ width, height, onOpenCommentModal }) => {
                                 commentInputContentHeight={
                                     commentInputContentHeight
                                 }
+                                ref={commentInputRef}
                             />
                             <CommentAddButton
                                 keyboardVisible={isKeyboardVisible}

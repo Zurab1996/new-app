@@ -1,42 +1,42 @@
 import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import FastImage from 'react-native-fast-image'
-import PropTypes from 'prop-types'
-import { TouchableOpacity } from 'react-native'
-import { withNavigation } from 'react-navigation'
 
-// styling configs
-import { scale, verticalScale, normalize } from '@configs/size'
-import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
+// import sizing
+import {
+    scale,
+    verticalScale,
+    normalize,
+    newsContainerHeight,
+} from '@configs/size'
 import AppStyles from '@configs/styles'
+import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
 
-// import components
-const OpenNews = React.lazy(() => import('@components/OpenNews/index'))
-const Image = React.lazy(() => import('@components/ImageLoader/index'))
+// reusable news components
+const OpenNews = React.lazy(() => import('@components/News/OpenNews'))
+const Image = React.lazy(() => import('@components/ImageLoader'))
 const CommentAndVote = React.lazy(() =>
-    import('@components/CommentAndVote/index')
+    import('@components/News/CommentAndVote')
 )
 
-// sizes initialization
+// styled component
+const ContainerHeight = newsContainerHeight
 const ContainerWidth = 343
-const ContainerHeight = 250
-const ImageHeight = 140
+const ImageHeight = 320
 const ContentContainerHeight = ContainerHeight - ImageHeight
-const HeaderContainerHeight = 85
+const HeaderContainerHeight = 70
 const SourceContainerHeight = 20
+const DescriptionContainerHeight = 80
 
-// styled components
 const Container = styled.View`
-    height: ${verticalScale(ContainerHeight)}px;
-    width: ${scale(ContainerWidth)}px;
+    display: flex;
     align-self: center;
     align-items: center;
+    height: ${verticalScale(ContainerHeight)}px;
+    width: ${scale(ContainerWidth)}px;
     background-color: ${AppStyles.color.COLOR_WHITE};
     border-bottom-right-radius: ${scale(10)}px;
     border-bottom-left-radius: ${scale(10)}px;
-    border-top-left-radius: ${({ bottom }) => (bottom ? scale(10) : 0)}px;
-    border-top-left-radius: ${({ bottom }) => (bottom ? scale(10) : 0)}px;
-    margin-top: ${({ bottom }) => (bottom ? verticalScale(10) : 0)}px;
 `
 const NewsContainer = styled.View`
     height: ${verticalScale(ContainerHeight - 5)}px;
@@ -57,17 +57,32 @@ const HeaderContainer = styled.View`
     width: 100%;
     height: ${verticalScale(HeaderContainerHeight)}px;
 `
-const HeaderTitle = styled(TouchableOpacity)`
+const HeaderTitle = styled.Text`
     width: 75%;
     height: ${verticalScale(HeaderContainerHeight)}px;
-`
-const HeaderTitleText = styled.Text`
     font-family: Raleway-SemiBold;
     font-size: ${normalize(15)}px;
     line-height: ${verticalScale(22)};
     color: ${AppStyles.color.COLOR_DARK_LIGHT};
 `
 const CommentVote = styled(CommentAndVote)``
+const Delimiter = styled.View`
+    width: 100%;
+    margin: ${verticalScale(5)}px ${scale(2)}px;
+    padding: ${verticalScale(2)}px ${scale(2)}px;
+    border-bottom-width: ${scale(1)}px;
+    border-bottom-color: ${AppStyles.color.COLOR_GREY};
+`
+const DescriptionContainer = styled.View`
+    width: 100%;
+    height: ${verticalScale(DescriptionContainerHeight)}px;
+`
+const Description = styled.Text`
+    font-family: Raleway;
+    font-size: ${normalize(11)}px;
+    line-height: ${verticalScale(18)};
+    color: ${AppStyles.color.COLOR_DARK_BLUE};
+`
 const SourceContainer = styled.View`
     flex-direction: row;
     justify-content: space-between;
@@ -81,16 +96,12 @@ const SourceInfo = styled.Text`
     padding: 0px ${scale(10)}px;
     color: ${AppStyles.color.COLOR_DARK_BLUE};
 `
-// components
-// eslint-disable-next-line react/prop-types
-const BigNews = ({ bottom, navigation }) => {
-    const onOpenCommentModal = openModal => {
-        openModal()
-    }
 
+// component
+const LargeNews = () => {
     return (
         <Suspense fallback={null}>
-            <Container bottom={bottom}>
+            <Container>
                 <NewsContainer>
                     <ImageContainer>
                         <Image
@@ -112,25 +123,27 @@ const BigNews = ({ bottom, navigation }) => {
                     </ImageContainer>
                     <ContentContainer>
                         <HeaderContainer>
-                            <HeaderTitle
-                                onPress={() =>
-                                    navigation.navigate('IndividualNews')
-                                }
-                            >
-                                <HeaderTitleText numberOfLines={3}>
-                                    {Capitalize(
-                                        'Japan economy beats expectations of slowdown '
-                                    )}
-                                </HeaderTitleText>
+                            <HeaderTitle numberOfLines={3}>
+                                {Capitalize(
+                                    'Japan economy beats expectations of slowdown '
+                                )}
                             </HeaderTitle>
                             <CommentVote
                                 width={`${25}%`}
                                 height={`${verticalScale(
                                     HeaderContainerHeight
                                 )}px`}
-                                onOpenCommentModal={onOpenCommentModal}
                             />
                         </HeaderContainer>
+                        <Delimiter />
+                        <DescriptionContainer>
+                            <Description numberOfLines={4}>
+                                {Capitalize(
+                                    // eslint-disable-next-line quotes
+                                    "Japan's economy unexpectedly grew in the three months to March, shrugging off forecasts for a contraction in the world's third largest economyJapan's economy unexpectedly grew in the three months to March, shrugging off forecasts for a contraction in the world's third largest economyJapan's economy unexpectedly grew in the three months to March, shrugging off forecasts for a contraction in the world's third largest economy."
+                                )}
+                            </Description>
+                        </DescriptionContainer>
                         <SourceContainer>
                             <SourceInfo>
                                 {ShowAmountCharacters('BBC NEWS', 15)}
@@ -145,13 +158,4 @@ const BigNews = ({ bottom, navigation }) => {
     )
 }
 
-// default values
-BigNews.defaultProps = {
-    bottom: false,
-}
-// check prop types
-BigNews.propTypes = {
-    bottom: PropTypes.oneOfType([null, PropTypes.bool]),
-}
-
-export default withNavigation(BigNews)
+export default React.memo(LargeNews)

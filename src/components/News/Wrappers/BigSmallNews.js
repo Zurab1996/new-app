@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import { scale, verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-const BigNews = React.lazy(() => import('@components/BigNews'))
-const SmallNews = React.lazy(() => import('@components/SmallNews'))
+const BigNews = React.lazy(() => import('@components/News/NewsTypes/Big'))
+const SmallNews = React.lazy(() => import('@components/News/NewsTypes/Small'))
 
 // sizes initialization
 const SmallNewsWrapperWidth = 343

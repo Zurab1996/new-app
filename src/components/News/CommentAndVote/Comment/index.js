@@ -6,7 +6,7 @@ import { verticalScale } from '@configs/size'
 
 // import components
 const CommentWrapper = React.lazy(() =>
-    import('@components/CommentAndVote/Comment/Wrapper')
+    import('@components/News/CommentAndVote/Comment/Wrapper')
 )
 
 // styled components

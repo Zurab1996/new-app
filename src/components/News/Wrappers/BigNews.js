@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
-const BigNews = React.lazy(() => import('@components/BigNews'))
+const BigNews = React.lazy(() => import('@components/News/NewsTypes/Big'))
 
 // styled components
 const Container = styled.View`

@@ -8,10 +8,10 @@ import { Capitalize, ShowAmountCharacters } from '@configs/helpers'
 import AppStyles from '@configs/styles'
 
 // import components
-const OpenNews = React.lazy(() => import('@components/OpenNews/index'))
-const Image = React.lazy(() => import('@components/ImageLoader/index'))
+const OpenNews = React.lazy(() => import('@components/News/OpenNews'))
+const Image = React.lazy(() => import('@components/ImageLoader'))
 const CommentAndVote = React.lazy(() =>
-    import('@components/CommentAndVote/index')
+    import('@components/News/CommentAndVote')
 )
 
 // sizes initialization

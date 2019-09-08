@@ -122,18 +122,18 @@ const TabNavigator = createBottomTabNavigator(
                 ),
             },
         },
-        ProfileScreen: {
-            screen: Profile,
-            navigationOptions: {
-                tabBarIcon: ({ tintColor }) => (
-                    <Icon name="profile" size={scale(20)} color={tintColor} />
-                ),
-                tabBarLabel: ({ tintColor }) => (
-                    <TabBarLabel color={tintColor}>Profile</TabBarLabel>
-                ),
-                tabBarVisible: false,
-            },
-        },
+        // ProfileScreen: {
+        //     screen: Profile,
+        //     navigationOptions: {
+        //         tabBarIcon: ({ tintColor }) => (
+        //             <Icon name="profile" size={scale(20)} color={tintColor} />
+        //         ),
+        //         tabBarLabel: ({ tintColor }) => (
+        //             <TabBarLabel color={tintColor}>Profile</TabBarLabel>
+        //         ),
+        //         tabBarVisible: false,
+        //     },
+        // },
     },
     {
         initialRouteName: 'NewsScreen',

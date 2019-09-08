@@ -7,7 +7,7 @@ import { verticalScale } from '@configs/size'
 import AppStyle from '@configs/styles'
 
 const AnimatedFlatList = React.lazy(() =>
-    import('@components/AnimatedFlatlist')
+    import('@components//News/Lists/AnimatedFlatlist')
 )
 const AppBackground = React.lazy(() => import('@components/AppBackground'))
 const Header = React.lazy(() => import('@components/PageHeader/index'))
