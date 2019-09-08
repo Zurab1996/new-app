@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 
 // styling configs
@@ -11,45 +11,201 @@ const CommentWrapper = React.lazy(() =>
 
 // styled components
 const Container = styled.View`
+    flex: 1;
     padding-top: ${verticalScale(10)}px;
 `
 
 const Comment = () => {
     return (
-        <Container>
-            <CommentWrapper
-                text="Lorem Ipsum has been the industry's standard dummy text
+        <Fragment>
+            <Container>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
                         ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
                         ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
                         ever since the industry's standard dummy text"
-                publishedAt="13 minutes age"
-                replyCount="REPLY 0"
-                isReply={false}
-            >
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+                <CommentWrapper
+                    text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                    publishedAt="13 minutes age"
+                    replyCount="REPLY 0"
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
+                        ever since the industry's standard dummy text"
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
                 <CommentWrapper
                     text="Lorem Ipsum has been the industry's standard dummy text
                         ever since the industry's standard dummy text"
                     publishedAt="13 minutes age"
                     replyCount="REPLY 0"
-                    isReply
-                />
-            </CommentWrapper>
-            <CommentWrapper
-                text="Lorem Ipsum has been the industry's standard dummy text
+                    isReply={false}
+                >
+                    <CommentWrapper
+                        text="Lorem Ipsum has been the industry's standard dummy text
                         ever since the industry's standard dummy text"
-                publishedAt="13 minutes age"
-                replyCount="REPLY 0"
-                isReply={false}
-            >
-                <CommentWrapper
-                    text="Lorem Ipsum has been the industry's standard dummy text
-                        ever since the industry's standard dummy text"
-                    publishedAt="13 minutes age"
-                    replyCount="REPLY 0"
-                    isReply
-                />
-            </CommentWrapper>
-        </Container>
+                        publishedAt="13 minutes age"
+                        replyCount="REPLY"
+                        isReply
+                    />
+                </CommentWrapper>
+            </Container>
+        </Fragment>
     )
 }
 

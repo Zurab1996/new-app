@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import PropTypes from 'prop-types'
-import * as Animatable from 'react-native-animatable'
 
 // styling configs
 import { scale, verticalScale, normalize } from '@configs/size'
@@ -26,6 +25,7 @@ const Container = styled.View`
 const CommentContainer = styled.View`
     flex-direction: row;
     width: ${({ isReply }) => (isReply ? '80%' : '100%')};
+    margin-bottom: ${verticalScale(15)}px;
 `
 const ImageContainer = styled.View`
     width: 20%;
@@ -54,23 +54,16 @@ const CommentContainerInfoPostTime = styled.Text`
     font-family: Raleway-Light;
     font-size: ${normalize(10)}px;
 `
-const CommentContainerInfoReplyButton = styled(TouchableOpacity)``
 const CommentContainerInfoReplyText = styled.Text`
     padding-right: ${scale(5)}px;
     font-family: Raleway-Medium;
     font-size: ${normalize(11)}px;
 `
-const ReplyCommentsContainer = styled.View`
-    margin-top: ${verticalScale(10)}px;
-`
-
-// animated custom components
-const AnimatedCommentContainerContent = Animatable.createAnimatableComponent(
-    CommentContainerContent
-)
+const ReplyCommentsContainer = styled.View``
 
 const CommentWrapper = props => {
     const [commentTextNumberOfLines, setCommentTextNumberOfLines] = useState(2)
+    const [showReply, setShowReply] = useState(false)
 
     const changeCommentTextNumberOfLine = () => {
         if (commentTextNumberOfLines === 2) {
@@ -79,6 +72,11 @@ const CommentWrapper = props => {
             setCommentTextNumberOfLines(2)
         }
     }
+
+    const replyComment = () => {
+        setShowReply(!showReply)
+    }
+
     const { text, publishedAt, replyCount, isReply, children } = props
     return (
         <Fragment>
@@ -101,27 +99,29 @@ const CommentWrapper = props => {
                         <TouchableOpacity
                             onPress={changeCommentTextNumberOfLine}
                         >
-                            <AnimatedCommentContainerContent
+                            <CommentContainerContent
                                 numberOfLines={commentTextNumberOfLines}
                                 ellipsizeMode="tail"
                             >
                                 {text}
-                            </AnimatedCommentContainerContent>
+                            </CommentContainerContent>
                         </TouchableOpacity>
                         <CommentContainerInfo>
                             <CommentContainerInfoPostTime>
                                 {publishedAt}
                             </CommentContainerInfoPostTime>
-                            <CommentContainerInfoReplyButton>
+                            <TouchableOpacity onPress={replyComment}>
                                 <CommentContainerInfoReplyText>
                                     {replyCount}
                                 </CommentContainerInfoReplyText>
-                            </CommentContainerInfoReplyButton>
+                            </TouchableOpacity>
                         </CommentContainerInfo>
                     </ContentContainer>
                 </CommentContainer>
             </Container>
-            <ReplyCommentsContainer>{children}</ReplyCommentsContainer>
+            {showReply && (
+                <ReplyCommentsContainer>{children}</ReplyCommentsContainer>
+            )}
         </Fragment>
     )
 }
