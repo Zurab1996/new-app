@@ -14,6 +14,9 @@ const Header = React.lazy(() => import('@components/PageHeader/index'))
 const RegistrationBanner = React.lazy(() =>
     import('@components/RegistrationBanner')
 )
+const ScrollableFlatList = React.lazy(() =>
+    import('@components/News/Lists/ScrollableFlatlist')
+)
 
 // styled components
 const Wrapper = styled.View`
@@ -30,13 +33,18 @@ const HeaderText = styled.Text`
     color: ${AppStyles.color.COLOR_PINK};
 `
 
+const loggedIn = true
 // component
 const TopNews = () => {
     return (
         <Suspense fallback={null}>
-            <Wrapper loggedIn={false}>
+            <Wrapper loggedIn={loggedIn}>
                 <Container>
-                    <RegistrationBanner />
+                    {!loggedIn ? (
+                        <RegistrationBanner />
+                    ) : (
+                        <ScrollableFlatList />
+                    )}
                 </Container>
             </Wrapper>
             <AppBackground />

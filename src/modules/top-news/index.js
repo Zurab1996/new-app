@@ -9,7 +9,9 @@ import AppStyle from '@configs/styles'
 //  import components
 const AppBackground = React.lazy(() => import('@components/AppBackground'))
 const Header = React.lazy(() => import('@components/PageHeader/index'))
-
+const AnimatedFlatList = React.lazy(() =>
+    import('@components/News/Lists/AnimatedFlatlist')
+)
 // styled components
 const Container = styled.View`
     height: ${verticalScale(515)}px;
@@ -26,7 +28,7 @@ const TopNews = () => {
         <Suspense fallback={null}>
             <Container>
                 <AppBackground />
-                {/* <AnimatedFlatList /> */}
+                <AnimatedFlatList />
             </Container>
         </Suspense>
     )

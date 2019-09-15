@@ -1,7 +1,7 @@
 import React from 'react'
-import { Animated, Platform } from 'react-native'
-import styled from 'styled-components'
+import { Animated, Platform, FlatList } from 'react-native'
 
+// styling configs
 import { verticalScale, newsWrapperContainerHeight } from '@configs/size'
 
 // import components
@@ -13,10 +13,6 @@ const BigSmallNewsWrapper = React.lazy(() =>
     import('@components/News/Wrappers/BigSmallNews')
 )
 const NewsWrapper = React.lazy(() => import('@components/News/Wrappers/News'))
-
-// styled components
-const FlatList = styled.FlatList``
-
 const AnimatedFlatListComponent = Animated.createAnimatedComponent(FlatList)
 
 // components
