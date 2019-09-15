@@ -18,7 +18,6 @@ import Icon from '@components/CustomIcon'
 import TopNews from '@topNews'
 import News from '@news'
 import NewsFeed from '@newsFeed'
-import Profile from '@profile'
 import IndividualNews from '@individualNews'
 
 const tabBarOptions = {
@@ -68,6 +67,10 @@ const NewsNavigator = createStackNavigator({
     IndividualNews,
 })
 
+const NewsFeedNavigation = createStackNavigator({
+    Home: NewsFeed,
+})
+
 TopNewsNavigation.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true
     if (navigation.state.index > 0) {
@@ -78,6 +81,15 @@ TopNewsNavigation.navigationOptions = ({ navigation }) => {
     }
 }
 NewsNavigator.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true
+    if (navigation.state.index > 0) {
+        tabBarVisible = false
+    }
+    return {
+        tabBarVisible,
+    }
+}
+NewsFeedNavigation.navigationOptions = ({ navigation }) => {
     let tabBarVisible = true
     if (navigation.state.index > 0) {
         tabBarVisible = false
@@ -112,7 +124,7 @@ const TabNavigator = createBottomTabNavigator(
             },
         },
         NewsFeedScreen: {
-            screen: NewsFeed,
+            screen: NewsFeedNavigation,
             navigationOptions: {
                 tabBarIcon: ({ tintColor }) => (
                     <Icon name="news-feed" size={scale(20)} color={tintColor} />
@@ -122,21 +134,9 @@ const TabNavigator = createBottomTabNavigator(
                 ),
             },
         },
-        // ProfileScreen: {
-        //     screen: Profile,
-        //     navigationOptions: {
-        //         tabBarIcon: ({ tintColor }) => (
-        //             <Icon name="profile" size={scale(20)} color={tintColor} />
-        //         ),
-        //         tabBarLabel: ({ tintColor }) => (
-        //             <TabBarLabel color={tintColor}>Profile</TabBarLabel>
-        //         ),
-        //         tabBarVisible: false,
-        //     },
-        // },
     },
     {
-        initialRouteName: 'NewsScreen',
+        initialRouteName: 'NewsFeedScreen',
         tabBarOptions: {
             ...tabBarOptions,
         },

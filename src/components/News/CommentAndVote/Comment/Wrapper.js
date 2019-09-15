@@ -11,7 +11,7 @@ import { scale, verticalScale, normalize } from '@configs/size'
 
 // import image
 // eslint-disable-next-line import/order
-const defaultPersonImage = require('../../../assets/images/default-person.jpg')
+const defaultPersonImage = require('../../../../assets/images/default-person.jpg')
 
 // sizes initialization
 const ContainerWidth = 343

@@ -7,7 +7,7 @@ import { verticalScale } from '@configs/size'
 import AppStyle from '@configs/styles'
 
 const AnimatedFlatList = React.lazy(() =>
-    import('@components//News/Lists/AnimatedFlatlist')
+    import('@components/News/Lists/AnimatedFlatlist')
 )
 const AppBackground = React.lazy(() => import('@components/AppBackground'))
 const Header = React.lazy(() => import('@components/PageHeader/index'))
@@ -16,7 +16,6 @@ const Header = React.lazy(() => import('@components/PageHeader/index'))
 const Container = styled.View`
     height: ${verticalScale(515)}px;
 `
-
 const HeaderText = styled.Text`
     font-family: Raleway;
     font-size: 18px;

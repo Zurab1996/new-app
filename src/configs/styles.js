@@ -9,6 +9,7 @@ const AppStyle = {
         COLOR_ORANGE: 'rgba(251,174,23,1)',
         COLOR_WHITE: 'rgba(242, 242, 242, 1)',
         COLOR_GREY: 'rgba(204, 204, 204, 1)',
+        COlOR_GREY_TRANSPARENT: 'rgba(128, 128, 128,0.6)',
     },
 }
 
